@@ -3,12 +3,22 @@ using UnityEngine;
 
 public class FroggerPlayerScript : MonoBehaviour
 {
+    AudioManager audioManager;
+    GameManager gameManager;
+
+    [SerializeField] private bool isDead;
+    [SerializeField] private bool onRiver;
+    [SerializeField] private bool onPlatform;
+
     [SerializeField] private bool canMove;
     Animator anim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         anim = GetComponentInChildren<Animator>();
         canMove = true;
     }
@@ -45,7 +55,13 @@ public class FroggerPlayerScript : MonoBehaviour
 
     void PlayerMove(Vector3 direction)
     {
-        Vector3 destination = transform.position + direction; 
+        Vector3 destination = transform.position + direction;
+
+        Collider2D _barrier = Physics2D.OverlapBox(destination, Vector2.zero, 0, LayerMask.GetMask("Barrier"));
+        Collider2D _platform = Physics2D.OverlapBox(destination, Vector2.zero, 0, LayerMask.GetMask("Platform"));
+
+        if (_barrier != null) return;
+
         StartCoroutine(SmoothMove(destination));
     }
 
