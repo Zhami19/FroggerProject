@@ -10,6 +10,8 @@ TagManager:
   - GameManager
   - StartPoint
   - Obstacle
+  - Pad
+  - ScoreZone
   layers:
   - Default
   - TransparentFX
@@ -46,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 4115977527
     locked: 0
   m_RenderingLayers:
   - Default

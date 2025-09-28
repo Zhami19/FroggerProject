@@ -12,11 +12,13 @@ public class FroggerPlayerScript : MonoBehaviour
 
     [SerializeField] private bool canMove;
     Animator anim;
+    ScoringZoneScript _zone;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        _zone = GameObject.FindGameObjectWithTag("ScoreZone").GetComponent<ScoringZoneScript>();
 
         anim = GetComponentInChildren<Animator>();
         canMove = true;
@@ -119,6 +121,26 @@ public class FroggerPlayerScript : MonoBehaviour
             if (onRiver) StartCoroutine(PlayerDeath(2));
             else StartCoroutine(PlayerDeath(3));
         }
+
+        if (other.gameObject.tag == "Pad")
+        {
+            LilypadScript _pad = other.gameObject.GetComponent<LilypadScript>();
+            if (!_pad._occupied)
+            {
+                _pad._occupied = true;
+                _pad._spr.enabled = true;
+                gameManager.NewFrog();
+                StartCoroutine(MoveTime());
+                Destroy(gameObject);
+            }
+            else StartCoroutine(PlayerDeath(2));
+        }
+
+        if (other.gameObject.tag == "ScoreZone" && !_zone.zoneTrigger)
+        {
+            gameManager.gameScore += _zone.zoneScore;
+            _zone.zoneTrigger = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -147,7 +169,15 @@ public class FroggerPlayerScript : MonoBehaviour
         anim.SetTrigger("Death");
         audioManager._audi.PlayOneShot(audioManager.soundFX[sfx]);
         yield return new WaitForSeconds(1.5f);
-        gameManager.NewFrog();
+        gameManager.playerLives--;
+        if(gameManager.playerLives < 0)
+        {
+            gameManager.GameOver();
+        }
+        else
+        {
+            gameManager.NewFrog();
+        }
         Destroy(gameObject);
     }
 }
