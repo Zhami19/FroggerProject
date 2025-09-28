@@ -12,6 +12,7 @@ public class TurtleDiveScript : MonoBehaviour
     {
         killCollider.enabled = false;
         isDiving = false;
+        InvokeRepeating("TurtleDive", 3, 10);
     }
 
     void TurtleDive()
@@ -25,7 +26,13 @@ public class TurtleDiveScript : MonoBehaviour
         {
             foreach(TurtleAnimationScript t in _turtle)
             {
-                yield return new WaitForSeconds(.5f);
+                t.TurtleDive();
+            }
+            yield return new WaitForSeconds(.5f);
+
+            foreach (TurtleAnimationScript t in _turtle)
+            {
+                t.TurtleRise();
             }
         }
     }

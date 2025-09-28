@@ -12,9 +12,23 @@ public class TurtleAnimationScript : MonoBehaviour
         turtleDiveScript = GetComponentInParent<TurtleDiveScript>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TurtleDive()
     {
-        
+        anim.SetTrigger("Dive");
+    }
+
+    public void TurtleRise()
+    {
+        anim.SetTrigger("Rise");
+    }
+
+    public void ColliderDisable()
+    {
+        turtleDiveScript.killCollider.enabled = true;
+    }
+
+    public void ColliderEnable()
+    {
+        turtleDiveScript.killCollider.enabled = false;
     }
 }
