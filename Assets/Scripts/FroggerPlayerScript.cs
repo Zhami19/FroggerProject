@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class FroggerPlayerScript : MonoBehaviour
 {
+    [SerializeField] private bool canMove;
     Animator anim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        canMove = true;
     }
 
     // Update is called once per frame
@@ -19,22 +21,22 @@ public class FroggerPlayerScript : MonoBehaviour
 
     void PlayerUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && canMove)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             PlayerMove(Vector3.up);
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && canMove)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 180f);
             PlayerMove(Vector3.down);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && canMove)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             PlayerMove(Vector3.left);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && canMove)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 270f);
             PlayerMove(Vector3.right);
@@ -66,4 +68,10 @@ public class FroggerPlayerScript : MonoBehaviour
         transform.position = destination;
     }
 
+    IEnumerator MoveTime()
+    {
+        canMove = false;
+        yield return new WaitForSeconds(.175f);
+        canMove = true;
+    }
 }
