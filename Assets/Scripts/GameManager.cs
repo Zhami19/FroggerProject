@@ -62,9 +62,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (_actions.Player.Start.triggered && scene.buildIndex == 1)
+        if (_actions.Player.Start.triggered && scene.buildIndex == 0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
         scoreCount.text = gameScore.ToString();
@@ -103,6 +103,6 @@ public class GameManager : MonoBehaviour
     IEnumerator MainMenu()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
