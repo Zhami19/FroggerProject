@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     //Get Scripts
     [SerializeField] FroggerPlayerScript _frogScript;
+    Frogger_InputActions _actions;
 
     public GameObject playerPrefab;
     public Transform startPoint;
@@ -32,9 +33,27 @@ public class GameManager : MonoBehaviour
     public float timeAmount = 30;
     public Image timeBar;
 
+    Scene scene;
+
+    private void Awake()
+    {
+        _actions = new Frogger_InputActions();
+    }
+
+    private void OnEnable()
+    {
+        _actions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _actions.Disable();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
         startPoint = GameObject.FindGameObjectWithTag("StartPoint").transform;
         winScreen.SetActive(false);
         gameOverScreen.SetActive(false);
@@ -43,8 +62,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (_actions.Player.Start.triggered && scene.buildIndex == 1)
+        {
+            SceneManager.LoadScene(0);
+        }
+
         scoreCount.text = gameScore.ToString();
         lifeCount.text = playerLives.ToString();
+        finalScore.text = scoreCount.text;
 
         timeBar.fillAmount = timeAmount / 30;
         _frogScript = GameObject.FindGameObjectWithTag("Player").GetComponent<FroggerPlayerScript>();

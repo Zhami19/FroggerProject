@@ -731,6 +731,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548450143}
   m_CullTransparentMesh: 1
+--- !u!1 &1768292380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1768292382}
+  - component: {fileID: 1768292381}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1768292381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768292380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ec3ea27d3d53e41b506e86d880540a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _frogScript: {fileID: 0}
+  playerPrefab: {fileID: 0}
+  startPoint: {fileID: 0}
+  winScreen: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  finalScoreScreen: {fileID: 0}
+  _scoringZoneScript: []
+  gameScore: 0
+  playerLives: 2
+  padCount: 0
+  scoreCount: {fileID: 0}
+  lifeCount: {fileID: 0}
+  finalScore: {fileID: 0}
+  timeAmount: 30
+  timeBar: {fileID: 0}
+--- !u!4 &1768292382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768292380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.15423428, y: -6.019069, z: -0.058019254}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1868454286
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,3 +952,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 238355767}
   - {fileID: 2119555228}
+  - {fileID: 1768292382}
