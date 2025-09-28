@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    AudioSource _audi;
+    public AudioSource _audi;
 
     public AudioClip[] soundFX;
     public AudioClip[] bgMusic;

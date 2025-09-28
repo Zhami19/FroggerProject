@@ -302,6 +302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 18wheeler
       objectReference: {fileID: 0}
+    - target: {fileID: 1638401379876620721, guid: 4c9719d79b906854d8c8c506f5dcb7d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -463,6 +467,10 @@ PrefabInstance:
     - target: {fileID: 3156823871220527558, guid: 8977d034898a98044a071f6503aa10fc, type: 3}
       propertyPath: m_Name
       value: firetruck (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156823871220527558, guid: 8977d034898a98044a071f6503aa10fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6784854778055322188, guid: 8977d034898a98044a071f6503aa10fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -942,7 +950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 583210108}
   - component: {fileID: 583210109}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: KillVolume_Top (5)
   m_TagString: KillVolume
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -1645,7 +1653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 856877208}
   - component: {fileID: 856877209}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: KillVolume_Top (4)
   m_TagString: KillVolume
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -1799,8 +1807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ec3ea27d3d53e41b506e86d880540a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
-  startPoint: {fileID: 0}
+  playerPrefab: {fileID: 4761556860779910919, guid: b64a3e3e860b04f4eb8336d4a418b549, type: 3}
+  startPoint: {fileID: 899079496}
 --- !u!4 &891558065
 Transform:
   m_ObjectHideFlags: 0
@@ -1993,6 +2001,10 @@ PrefabInstance:
     - target: {fileID: 498060251940947239, guid: 759c3fd1713dd5e47808508aaea14a9d, type: 3}
       propertyPath: m_Name
       value: bluecar (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 498060251940947239, guid: 759c3fd1713dd5e47808508aaea14a9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2741406761903535856, guid: 759c3fd1713dd5e47808508aaea14a9d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2188,7 +2200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1186831169}
   - component: {fileID: 1186831170}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: KillVolume_Top (1)
   m_TagString: KillVolume
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -3042,7 +3054,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e8ad122b6f2784facb8deb53a14558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundFX: []
+  _audi: {fileID: 0}
+  soundFX:
+  - {fileID: 8300000, guid: 9922dcdcb410fc24eaaaa4e0e3a23922, type: 3}
+  - {fileID: 8300000, guid: 1a202df20ffd7ea47868944dd0d2bf0e, type: 3}
+  - {fileID: 8300000, guid: 60d9c72c7e7ea7b4ebefde5fe0019198, type: 3}
+  - {fileID: 8300000, guid: 396da1a5e914d3e45b0908d8369e89ce, type: 3}
+  - {fileID: 8300000, guid: 8c216b4d5d2766b4d8de7e966ef561d7, type: 3}
   bgMusic: []
 --- !u!82 &1611143079
 AudioSource:
@@ -3166,7 +3184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1657771345}
   - component: {fileID: 1657771346}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: KillVolume_Top
   m_TagString: KillVolume
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -3245,6 +3263,10 @@ PrefabInstance:
     - target: {fileID: 6821164375720806145, guid: ce4c12976f98be147a63b7eacbdbcac5, type: 3}
       propertyPath: m_Name
       value: yellowcar (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821164375720806145, guid: ce4c12976f98be147a63b7eacbdbcac5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8007467728319152359, guid: ce4c12976f98be147a63b7eacbdbcac5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3359,7 +3381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1699363250}
   - component: {fileID: 1699363251}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: KillVolume_Top (3)
   m_TagString: KillVolume
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -3945,7 +3967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087135356}
   - component: {fileID: 2087135357}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: KillVolume_Top (2)
   m_TagString: KillVolume
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -4063,11 +4085,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2341334662932880295, guid: b64a3e3e860b04f4eb8336d4a418b549, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4761556860779910919, guid: b64a3e3e860b04f4eb8336d4a418b549, type: 3}
       propertyPath: m_Name
       value: Frogger_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761556860779910919, guid: b64a3e3e860b04f4eb8336d4a418b549, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
