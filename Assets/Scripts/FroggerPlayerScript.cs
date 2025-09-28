@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class FroggerPlayerScript : MonoBehaviour
 {
+    Frogger_InputActions _actions;
+
     AudioManager audioManager;
     GameManager gameManager;
 
-    [SerializeField] private bool isDead;
+    [SerializeField] public bool isDead;
     [SerializeField] private bool onRiver;
     [SerializeField] private bool onPlatform;
 
@@ -16,6 +18,8 @@ public class FroggerPlayerScript : MonoBehaviour
 
     private void Awake()
     {
+        _actions = new Frogger_InputActions();
+
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         _zone = GameObject.FindGameObjectWithTag("ScoreZone").GetComponent<ScoringZoneScript>();
@@ -25,10 +29,14 @@ public class FroggerPlayerScript : MonoBehaviour
         isDead = false;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        
+        _actions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _actions.Disable();
     }
 
     // Update is called once per frame
@@ -39,25 +47,25 @@ public class FroggerPlayerScript : MonoBehaviour
 
     void PlayerUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && canMove)
+        if (_actions.Player.Up.triggered && canMove)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             PlayerMove(Vector3.up);
             StartCoroutine(MoveTime());
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && canMove)
+        if (_actions.Player.Down.triggered && canMove)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 180f);
             PlayerMove(Vector3.down);
             StartCoroutine(MoveTime());
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && canMove)
+        if (_actions.Player.Left.triggered && canMove)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             PlayerMove(Vector3.left);
             StartCoroutine(MoveTime());
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && canMove)
+        if (_actions.Player.Right.triggered && canMove)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 270f);
             PlayerMove(Vector3.right);
@@ -129,17 +137,31 @@ public class FroggerPlayerScript : MonoBehaviour
             {
                 _pad._occupied = true;
                 _pad._spr.enabled = true;
-                gameManager.NewFrog();
+                gameManager.padCount--;
+
+                //Lilypad check
+                if (gameManager.padCount > 0)
+                {
+                    audioManager._audi.PlayOneShot(audioManager.soundFX[0]);
+                    gameManager.NewFrog();
+                }
+                else
+                    gameManager.WinScreen();
+
                 StartCoroutine(MoveTime());
                 Destroy(gameObject);
             }
             else StartCoroutine(PlayerDeath(2));
         }
 
-        if (other.gameObject.tag == "ScoreZone" && !_zone.zoneTrigger)
+        if (other.gameObject.tag == "ScoreZone")
         {
-            gameManager.gameScore += _zone.zoneScore;
-            _zone.zoneTrigger = true;
+            ScoringZoneScript _scoreZ = other.gameObject.GetComponent<ScoringZoneScript>();
+            if (!_scoreZ.zoneTrigger)
+            {
+                gameManager.gameScore += _zone.zoneScore;
+                _zone.zoneTrigger = true;
+            }
         }
     }
 
@@ -160,6 +182,11 @@ public class FroggerPlayerScript : MonoBehaviour
         {
             if (!onPlatform) StartCoroutine(PlayerDeath(2));
         }
+    }
+
+    public void TimeOut()
+    {
+        StartCoroutine(PlayerDeath(3));
     }
 
     IEnumerator PlayerDeath(int sfx)

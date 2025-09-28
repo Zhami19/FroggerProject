@@ -6,6 +6,9 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    //Get Scripts
+    [SerializeField] FroggerPlayerScript _frogScript;
+
     public GameObject playerPrefab;
     public Transform startPoint;
 
@@ -15,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject finalScoreScreen;
 
     //Scoring
+    public ScoringZoneScript[] _scoringZoneScript;
     public int gameScore = 0;
     public int playerLives = 2;
     public int padCount;
@@ -25,6 +29,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text finalScore;
 
     //Life Bar
+    public float timeAmount = 30;
     public Image timeBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,18 +38,27 @@ public class GameManager : MonoBehaviour
         startPoint = GameObject.FindGameObjectWithTag("StartPoint").transform;
         winScreen.SetActive(false);
         gameOverScreen.SetActive(false);
-        finalScoreScreen.SetActive(false);  
+        finalScoreScreen.SetActive(false);
     }
 
     private void Update()
     {
         scoreCount.text = gameScore.ToString();
         lifeCount.text = playerLives.ToString();
+
+        timeBar.fillAmount = timeAmount / 30;
+        _frogScript = GameObject.FindGameObjectWithTag("Player").GetComponent<FroggerPlayerScript>();
+        if (!_frogScript.isDead) timeAmount -= Time.deltaTime;
+        if (timeAmount <= 0 && !_frogScript.isDead) _frogScript.TimeOut();
     }
 
     public void NewFrog()
     {
+        foreach (ScoringZoneScript z in _scoringZoneScript)
+            z.zoneTrigger = false;
+
         Instantiate(playerPrefab, startPoint.position, startPoint.rotation);
+        timeAmount = 30;
     }
 
     public void WinScreen()

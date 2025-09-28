@@ -3304,14 +3304,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ec3ea27d3d53e41b506e86d880540a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _frogScript: {fileID: 0}
   playerPrefab: {fileID: 4761556860779910919, guid: b64a3e3e860b04f4eb8336d4a418b549, type: 3}
   startPoint: {fileID: 899079496}
+  winScreen: {fileID: 1172189432}
+  gameOverScreen: {fileID: 624501692}
+  finalScoreScreen: {fileID: 1612380171}
+  _scoringZoneScript:
+  - {fileID: 1513012349}
+  - {fileID: 1678660705}
+  - {fileID: 196077878}
+  - {fileID: 111601566}
+  - {fileID: 1519161937}
+  - {fileID: 64848510}
+  - {fileID: 340998904}
+  - {fileID: 1320310924}
+  - {fileID: 768510146}
+  - {fileID: 851753893}
+  - {fileID: 985403628}
   gameScore: 0
   playerLives: 2
-  padCount: 0
+  padCount: 5
   scoreCount: {fileID: 1209373736}
   lifeCount: {fileID: 1141404647}
   finalScore: {fileID: 1255974556}
+  timeAmount: 30
   timeBar: {fileID: 1753162113}
 --- !u!4 &891558065
 Transform:
@@ -6599,10 +6616,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 75224593, guid: a52c1c2066c3c2b47a352b4b3221aaae, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
